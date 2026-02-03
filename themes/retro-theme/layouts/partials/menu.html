@@ -1,29 +1,31 @@
-<center>
-<font size="-1" color="#ff0066"><b>★ MENU ★</b></font>
-</center>
-<br>
-<font size="-1">
-<img src="https://web.archive.org/web/20010202042700im_/http://www.geocities.co.jp/Milano/4426/icon_home.gif" alt="*" border="0"> <a href="/">トップページ</a><br>
-<br>
-{{- with index site.Menus "main" }}
-  {{- range . }}
-    <img src="https://web.archive.org/web/20010202042700im_/http://www.geocities.co.jp/Milano/4426/icon_star.gif" alt="*" border="0"> <a href="{{ .URL }}">{{ .Name }}</a><br>
-    {{- with .Children }}
-      {{- range . }}
-        &nbsp;&nbsp;&nbsp;<img src="https://web.archive.org/web/20010202042700im_/http://www.geocities.co.jp/Milano/4426/icon_arrow.gif" alt=">" border="0"> <a href="{{ .URL }}">{{ .Name }}</a><br>
-      {{- end }}
-    {{- end }}
-  {{- end }}
-{{- end }}
-</font>
-<br>
-<center>
-<img src="https://web.archive.org/web/20010202042700im_/http://www.geocities.co.jp/Milano/4426/line_heart.gif" alt="----" width="120" height="10">
-</center>
-<br>
-<center>
-<font size="-2">
-  最終更新日<br>
-  {{ now.Format "2006年01月02日" }}
-</font>
-</center>
+<div class="menu-container">
+  <div class="menu-header">
+    <img src="{{ "images/banner.svg" | relURL }}" alt="{{ site.Title }}" class="menu-banner">
+  </div>
+
+  <ul class="menu-list">
+    <li>
+      <a href="/" data-iframe-url="/iframe/">Home</a>
+    </li>
+
+    {{ range site.Menus.main }}
+    <li>
+      <a href="{{ .URL }}" data-iframe-url="{{ .URL }}iframe/">{{ .Name }}</a>
+    </li>
+    {{ end }}
+
+    <li class="menu-divider">Recent Posts</li>
+
+    {{ range first 3 (where site.RegularPages "Section" "posts") }}
+    <li class="menu-item-sub">
+      <a href="{{ .RelPermalink }}" data-iframe-url="{{ .RelPermalink }}iframe/">
+        {{ .Title | truncate 20 }}
+      </a>
+    </li>
+    {{ end }}
+  </ul>
+
+  <div class="menu-footer">
+    Last Updated: {{ now.Format "2006/01/02" }}
+  </div>
+</div>

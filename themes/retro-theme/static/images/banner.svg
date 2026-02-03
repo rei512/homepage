@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="60" viewBox="0 0 180 60">
+  <rect width="180" height="60" fill="#F2E7DC"/>
+  <rect x="2" y="2" width="176" height="56" fill="none" stroke="#A9D9D0" stroke-width="3"/>
+  <text x="90" y="38" font-family="monospace" font-size="20" fill="#027373" text-anchor="middle" font-weight="bold">My Blog</text>
+</svg>
