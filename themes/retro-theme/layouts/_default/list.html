@@ -1,8 +1,47 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
-  {{ .Content }}
-  {{ range .Pages }}
-    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-    {{ .Summary }}
-  {{ end }}
+<center>
+<font size="+2" color="#ff0066"><b>{{ .Title }}</b></font>
+</center>
+
+<br>
+{{ .Content }}
+<br>
+
+<center>
+<img src="https://web.archive.org/web/20010202042700im_/http://www.geocities.co.jp/Milano/4426/line_heart.gif" alt="----" width="300" height="10">
+</center>
+<br>
+
+{{ if .Pages }}
+<font size="+1" color="#ff0066"><b>★ 記事一覧 (全{{ len .Pages }}件) ★</b></font>
+<br><br>
+
+<ul>
+{{ range .Pages }}
+  <li>
+    <img src="https://web.archive.org/web/20010202042700im_/http://www.geocities.co.jp/Milano/4426/icon_star.gif" alt="*" border="0">
+    <b><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></b>
+    <font size="-1" color="#666666">({{ .Date.Format "2006/01/02" }})</font>
+    <br>
+    <font size="-1">{{ .Summary | plainify | truncate 150 }}</font>
+    <br><br>
+  </li>
+{{ end }}
+</ul>
+
+{{ else }}
+<center>
+<font size="-1"><i>まだ記事がありません。</i></font>
+</center>
+{{ end }}
+
+<br>
+<center>
+<img src="https://web.archive.org/web/20010202042700im_/http://www.geocities.co.jp/Milano/4426/line_star2.gif" alt="----" width="400" height="5">
+</center>
+<br>
+<center>
+<a href="/"><img src="https://web.archive.org/web/20010202042700im_/http://www.geocities.co.jp/Milano/4426/icon_home.gif" alt="*" border="0"> <b>トップに戻る</b></a>
+</center>
+
 {{ end }}

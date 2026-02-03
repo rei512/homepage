@@ -1,0 +1,3 @@
+[submodule "themes/hugo-theme-yassi"]
+	path = themes/hugo-theme-yassi
+	url = https://github.com/yassi/hugo-theme-yassi.git

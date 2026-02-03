@@ -1,17 +1,40 @@
-<!DOCTYPE html>
-<html lang="{{ or site.Language.LanguageCode site.Language.Lang }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-  {{ partial "head.html" . }}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} - {{ site.Title }}{{ end }}</title>
 </head>
-<body>
-  <header>
-    {{ partial "header.html" . }}
-  </header>
-  <main>
-    {{ block "main" . }}{{ end }}
-  </main>
-  <footer>
-    {{ partial "footer.html" . }}
-  </footer>
+<body bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#800080" alink="#ff0000">
+
+<table width="100%" border="1" cellpadding="10" cellspacing="0">
+  <tr>
+    <td colspan="2" bgcolor="#ffccff">
+      <center>
+        <img src="https://web.archive.org/web/20010202042700im_/http://www.geocities.co.jp/Milano/4426/ani_welcome.gif" alt="ようこそ" border="0"><br>
+        <font size="+3" color="#ff0066"><b>{{ site.Title }}</b></font><br>
+        <font size="-1">{{ site.Params.description | default "インターネットの古き良き時代へ" }}</font><br>
+        <img src="https://web.archive.org/web/20010202042700im_/http://www.geocities.co.jp/Milano/4426/line_star2.gif" alt="----" width="400" height="5"><br>
+      </center>
+    </td>
+  </tr>
+  <tr>
+    <td width="150" valign="top" bgcolor="#eeeeee">
+      {{ partial "menu.html" . }}
+    </td>
+    <td valign="top">
+      {{ block "main" . }}{{ end }}
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" bgcolor="#cccccc">
+      <center>
+        <font size="-2">
+          {{ partial "footer.html" . }}
+        </font>
+      </center>
+    </td>
+  </tr>
+</table>
+
 </body>
 </html>

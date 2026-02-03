@@ -1,51 +1,29 @@
-{{- /*
-Renders a menu for the given menu ID.
-
-@context {page} page The current page.
-@context {string} menuID The menu ID.
-
-@example: {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
-*/}}
-
-{{- $page := .page }}
-{{- $menuID := .menuID }}
-
-{{- with index site.Menus $menuID }}
-  <nav>
-    <ul>
-      {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
-    </ul>
-  </nav>
-{{- end }}
-
-{{- define "partials/inline/menu/walk.html" }}
-  {{- $page := .page }}
-  {{- range .menuEntries }}
-    {{- $attrs := dict "href" .URL }}
-    {{- if $page.IsMenuCurrent .Menu . }}
-      {{- $attrs = merge $attrs (dict "class" "active" "aria-current" "page") }}
-    {{- else if $page.HasMenuCurrent .Menu .}}
-      {{- $attrs = merge $attrs (dict "class" "ancestor" "aria-current" "true") }}
-    {{- end }}
-    {{- $name := .Name }}
-    {{- with .Identifier }}
-      {{- with T . }}
-        {{- $name = . }}
+<center>
+<font size="-1" color="#ff0066"><b>★ MENU ★</b></font>
+</center>
+<br>
+<font size="-1">
+<img src="https://web.archive.org/web/20010202042700im_/http://www.geocities.co.jp/Milano/4426/icon_home.gif" alt="*" border="0"> <a href="/">トップページ</a><br>
+<br>
+{{- with index site.Menus "main" }}
+  {{- range . }}
+    <img src="https://web.archive.org/web/20010202042700im_/http://www.geocities.co.jp/Milano/4426/icon_star.gif" alt="*" border="0"> <a href="{{ .URL }}">{{ .Name }}</a><br>
+    {{- with .Children }}
+      {{- range . }}
+        &nbsp;&nbsp;&nbsp;<img src="https://web.archive.org/web/20010202042700im_/http://www.geocities.co.jp/Milano/4426/icon_arrow.gif" alt=">" border="0"> <a href="{{ .URL }}">{{ .Name }}</a><br>
       {{- end }}
     {{- end }}
-    <li>
-      <a
-        {{- range $k, $v := $attrs }}
-          {{- with $v }}
-            {{- printf " %s=%q" $k $v | safeHTMLAttr }}
-          {{- end }}
-        {{- end -}}
-      >{{ $name }}</a>
-      {{- with .Children }}
-        <ul>
-          {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
-        </ul>
-      {{- end }}
-    </li>
   {{- end }}
 {{- end }}
+</font>
+<br>
+<center>
+<img src="https://web.archive.org/web/20010202042700im_/http://www.geocities.co.jp/Milano/4426/line_heart.gif" alt="----" width="120" height="10">
+</center>
+<br>
+<center>
+<font size="-2">
+  最終更新日<br>
+  {{ now.Format "2006年01月02日" }}
+</font>
+</center>

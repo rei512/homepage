@@ -1,0 +1,6 @@
+{{- /* 女の子カウンター - 各桁を画像で表示 */ -}}
+{{- $count := now.Unix -}}
+{{- $digits := split (printf "%d" $count) "" -}}
+{{- range $digits -}}
+  <img src="https://web.archive.org/web/20001109080500im_/http://www.vector.co.jp/authors/VA016309/count/girl/{{ . }}.gif" alt="{{ . }}" width="20" height="30" border="0">
+{{- end -}}
