@@ -1,0 +1,667 @@
+/* Y2K風1列レイアウトCSS - 彩度低めの青単色パレット */
+
+/* リセット */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 背景 */
+body {
+  background-color: #DDDDEE;
+  background-image: radial-gradient(circle, #CCCCDD 1px, transparent 1px);
+  background-size: 20px 20px;
+  font-family: 'Courier New', 'MS Gothic', monospace;
+  font-size: 12px;
+  line-height: 24px;
+  color: #333366;
+}
+
+/* コンテナ */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* サイトタイトル - 明朝体・背景なし */
+.site-title {
+  font-family: 'Times New Roman', 'Yu Mincho', 'YuMincho', '游明朝', 'Hiragino Mincho ProN', serif;
+  font-size: 32px;
+  font-weight: normal;
+  color: #333366;
+  text-align: center;
+  margin-bottom: 30px;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/* タブメニュー */
+.tab-menu {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.tab-list {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.tab-item {
+  flex: 1;
+  text-align: center;
+}
+
+.tab-link {
+  display: block;
+  padding: 12px 0;
+  font-family: 'Courier New', 'MS Gothic', monospace;
+  font-size: 15px;
+  color: #4444AA;
+  text-decoration: none;
+  background: none;
+  border: none;
+}
+
+.tab-link::before {
+  content: '~';
+  color: #6666AA;
+}
+
+.tab-link::after {
+  content: '~';
+  color: #6666AA;
+}
+
+.tab-link:hover {
+  background: none;
+  text-decoration: underline;
+}
+
+.tab-link.active {
+  color: #333366;
+  font-weight: bold;
+  background: none;
+}
+
+/* メインコンテンツ */
+.site-main {
+  padding: 30px 0;
+  min-height: 500px;
+}
+
+/* フッター */
+.site-footer {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 2px solid #AAAACC;
+  text-align: center;
+  font-size: 11px;
+  color: #6666AA;
+  line-height: 22px;
+}
+
+.site-footer p {
+  margin-bottom: 8px;
+}
+
+.site-footer a {
+  color: #4444AA;
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
+
+.footer-social a {
+  margin: 0 8px;
+}
+
+.footer-social a::before {
+  content: '[ ';
+}
+
+.footer-social a::after {
+  content: ' ]';
+}
+
+.footer-info {
+  margin-top: 12px;
+  font-size: 10px;
+  color: #AAAACC;
+}
+
+/* ホームページ */
+.landing-message {
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #DDDDEE;
+  border-left: 3px solid #6666AA;
+  color: #333366;
+  font-size: 13px;
+  line-height: 26px;
+}
+
+.random-showcase {
+  margin-bottom: 40px;
+  padding: 20px;
+  background-color: #FFFFFF;
+  border: 2px solid #6666AA;
+}
+
+.showcase-image {
+  margin-bottom: 20px;
+  text-align: center;
+  height: 300px;
+  overflow: hidden;
+}
+
+.showcase-image img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border: 2px solid #AAAACC;
+}
+
+.showcase-text {
+  font-size: 12px;
+  line-height: 24px;
+  color: #4444AA;
+  font-style: italic;
+  text-align: center;
+}
+
+.image-credit {
+  text-align: right;
+  font-size: 10px;
+  color: #AAAACC;
+  margin-top: 8px;
+}
+
+.image-credit a {
+  color: #AAAACC;
+  text-decoration: none;
+}
+
+.image-credit a:hover {
+  text-decoration: underline;
+}
+
+/* 投稿リスト */
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.post-item {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #CCCCDD;
+}
+
+.post-item:last-child {
+  border-bottom: none;
+}
+
+.post-item-title {
+  font-size: 16px;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.post-item-title a {
+  color: #4444AA;
+  text-decoration: none;
+}
+
+.post-item-title a:hover {
+  text-decoration: underline;
+  color: #6666AA;
+}
+
+.post-item-date {
+  font-size: 11px;
+  color: #6666AA;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.post-item-summary {
+  color: #333366;
+  font-size: 12px;
+  line-height: 22px;
+}
+
+.no-posts {
+  color: #6666AA;
+  font-style: italic;
+  text-align: center;
+  padding: 40px;
+}
+
+.recent-posts h2 {
+  font-size: 18px;
+  color: #4444AA;
+  border-bottom: 2px solid #AAAACC;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+/* 個別投稿 */
+.post-header {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #6666AA;
+}
+
+.post-title {
+  font-size: 24px;
+  color: #4444AA;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.post-meta {
+  font-size: 11px;
+  color: #4444AA;
+  padding: 10px;
+  background-color: #DDDDEE;
+  border-left: 3px solid #6666AA;
+}
+
+.post-meta time {
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.tags {
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+
+.tag {
+  display: inline-block;
+  margin-right: 3px;
+  margin-bottom: 3px;
+  background: none;
+  color: #4444AA;
+  text-decoration: none;
+  font-size: 10px;
+  border: none;
+  padding: 0;
+}
+
+.tag::before {
+  content: '#';
+}
+
+.tag:hover {
+  color: #333366;
+  background: none;
+  text-decoration: underline;
+}
+
+.post-content {
+  margin-bottom: 40px;
+}
+
+/* コンテンツ内要素 */
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+  color: #4444AA;
+  margin-top: 26px;
+  margin-bottom: 13px;
+  font-weight: bold;
+}
+
+.post-content h2 {
+  font-size: 18px;
+  border-bottom: 2px solid #AAAACC;
+  padding-bottom: 10px;
+}
+
+.post-content h3 {
+  font-size: 14px;
+}
+
+.post-content p {
+  margin-bottom: 24px;
+}
+
+.post-content a {
+  color: #4444AA;
+  text-decoration: underline;
+}
+
+.post-content a:hover {
+  color: #6666AA;
+  background-color: #DDDDEE;
+}
+
+.post-content ul,
+.post-content ol {
+  margin-left: 30px;
+  margin-bottom: 24px;
+}
+
+.post-content li {
+  margin-bottom: 12px;
+}
+
+.post-content pre {
+  background-color: #333366;
+  color: #CCCCDD;
+  padding: 15px;
+  border: 2px solid #6666AA;
+  overflow-x: auto;
+  margin-bottom: 24px;
+  font-family: 'Courier New', 'MS Gothic', monospace;
+  font-size: 11px;
+  line-height: 22px;
+}
+
+.post-content code {
+  font-family: 'Courier New', 'MS Gothic', monospace;
+}
+
+.post-content p code,
+.post-content li code {
+  background-color: #DDDDEE;
+  color: #333366;
+  padding: 2px 6px;
+  border: 1px solid #AAAACC;
+  font-size: 11px;
+}
+
+.post-content img {
+  max-width: 100%;
+  height: auto;
+  border: 2px solid #6666AA;
+  margin-bottom: 24px;
+  cursor: zoom-in;
+}
+
+.showcase-image img {
+  cursor: zoom-in;
+}
+
+/* ライトボックス */
+.lightbox-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(30, 30, 30, 0.85);
+  z-index: 9999;
+  cursor: zoom-out;
+  justify-content: center;
+  align-items: center;
+}
+
+.lightbox-overlay.active {
+  display: flex;
+}
+
+.lightbox-img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border: 2px solid #AAAACC;
+}
+
+.post-content blockquote {
+  border-left: 3px solid #6666AA;
+  padding: 15px;
+  margin-left: 0;
+  margin-bottom: 24px;
+  color: #4444AA;
+  font-style: italic;
+  background-color: #DDDDEE;
+}
+
+.post-content hr {
+  border: none;
+  border-top: 2px solid #AAAACC;
+  margin: 30px 0;
+}
+
+.post-content table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 24px;
+  border: 2px solid #6666AA;
+}
+
+.post-content th,
+.post-content td {
+  border: 1px solid #AAAACC;
+  padding: 8px;
+  text-align: left;
+}
+
+.post-content th {
+  background-color: #6666AA;
+  color: #EEEEF5;
+  font-weight: bold;
+}
+
+.post-content td {
+  background-color: #FFFFFF;
+}
+
+/* 投稿ナビゲーション */
+.post-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.post-nav-top {
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #CCCCDD;
+}
+
+.post-nav-bottom {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 2px solid #AAAACC;
+}
+
+.nav-item {
+  flex: 1;
+}
+
+.nav-item a {
+  color: #4444AA;
+  text-decoration: none;
+  font-size: 12px;
+  display: block;
+}
+
+.nav-item a:hover .nav-title {
+  text-decoration: underline;
+}
+
+.nav-arrow {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.nav-title {
+  display: block;
+}
+
+.nav-prev {
+  text-align: left;
+}
+
+.nav-next {
+  text-align: right;
+}
+
+/* リストページ */
+.page-header {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #6666AA;
+}
+
+.page-header h1 {
+  font-size: 24px;
+  color: #4444AA;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.page-description {
+  color: #4444AA;
+  font-size: 12px;
+}
+
+/* スクロールバー */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #EEEEF5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6666AA;
+  border: 2px solid #EEEEF5;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4444AA;
+}
+
+/* About ページ */
+.about-page {
+  max-width: 700px;
+}
+
+.page-content h2,
+.page-content h3,
+.page-content h4 {
+  color: #4444AA;
+  margin-top: 26px;
+  margin-bottom: 13px;
+  font-weight: bold;
+}
+
+.page-content h2 {
+  font-size: 18px;
+  border-bottom: 2px solid #AAAACC;
+  padding-bottom: 10px;
+}
+
+.page-content h3 {
+  font-size: 14px;
+}
+
+.page-content p {
+  margin-bottom: 24px;
+}
+
+.page-content ul,
+.page-content ol {
+  margin-left: 30px;
+  margin-bottom: 24px;
+}
+
+.page-content li {
+  margin-bottom: 12px;
+}
+
+.page-content a {
+  color: #4444AA;
+  text-decoration: underline;
+}
+
+.page-content a:hover {
+  color: #6666AA;
+  background-color: #DDDDEE;
+}
+
+.page-content strong {
+  font-weight: bold;
+  color: #333366;
+}
+
+/* Taxonomy ページ（タグ一覧） */
+.taxonomy-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.taxonomy-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  color: #4444AA;
+  text-decoration: none;
+  font-size: 12px;
+  border: 1px solid #AAAACC;
+  background-color: #EEEEF5;
+  transition: background-color 0.2s;
+}
+
+.taxonomy-tag:hover {
+  background-color: #DDDDEE;
+  border-color: #6666AA;
+}
+
+.taxonomy-tag-count {
+  font-size: 10px;
+  color: #6666AA;
+  margin-left: 4px;
+}
+
+.taxonomy-tag-count::before {
+  content: '(';
+}
+
+.taxonomy-tag-count::after {
+  content: ')';
+}
+
+.no-terms {
+  color: #6666AA;
+  font-style: italic;
+  text-align: center;
+  padding: 40px;
+}
+
+/* Term ページ（個別タグ/カテゴリ） */
+.term-page {
+  max-width: 800px;
+}
+
+.term-description {
+  color: #4444AA;
+  font-size: 13px;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #DDDDEE;
+  border-left: 3px solid #6666AA;
+}
+
+.term-count {
+  font-weight: bold;
+  color: #6666AA;
+}
