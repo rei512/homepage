@@ -1,4 +1,47 @@
-baseURL = 'https://example.org/'
-languageCode = 'en-us'
-title = 'My New Hugo Site'
+baseURL = 'https://deltav-lab.org/'
+languageCode = 'ja'
+title = 'ΔV Lab'
 theme = 'retro-theme'
+
+buildFuture = true
+
+[params]
+  CoverImage = "/images/avatar.svg"
+  CoverImageWidth = 150
+
+  # Theme Colors
+  # accentColor = "#b5221c"
+  # accentColorDark = "#b5221c"
+
+  # Project display mode: true for carousel, false for grid
+  useProjectCarousel = true
+
+  # Social Media Links
+  [params.social]
+    github = "https://github.com/rei512"
+    twitter = "https://twitter.com/DeltaV_Lab"
+    mail = "mailto:me@deltav-lab.org"
+
+[taxonomies]
+  tag = "tags"
+
+[menu]
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 2
+
+  [[menu.main]]
+    name = "Posts"
+    url = "/posts/"
+    weight = 3
+
+  [[menu.main]]
+    name = "Tags"
+    url = "/tags/"
+    weight = 4

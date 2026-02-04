@@ -1,3 +1,39 @@
 {{ define "main" }}
-{{/* 通常アクセス時はbaseof.htmlのiframeで表示されるため、ここには何も記述しない */}}
+<div class="home-page">
+  <section class="landing-message">
+    <p>ようこそ！このサイトは電気科の元高専生が回路を燃やしたりするブログです． 一応専門は制御と三相同期モータ
+
+</p>
+  </section>
+
+  <section class="random-showcase">
+    <div class="showcase-image">
+      <img id="random-image" src="" alt="Random showcase">
+    </div>
+    <div class="showcase-text">
+      <p id="random-flavor-text"></p>
+    </div>
+    <p class="image-credit">image: <a href="https://publicdomainq.net" target="_blank" rel="noopener">publicdomainq.net</a></p>
+  </section>
+
+  <section class="recent-posts">
+    <h2>Recent Posts</h2>
+    {{ if site.RegularPages }}
+    <ul class="post-list">
+      {{ range first 5 site.RegularPages }}
+      <li class="post-item">
+        <h3 class="post-item-title">
+          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        </h3>
+        <time class="post-item-date" datetime="{{ .Date.Format "2006-01-02" }}">
+          {{ .Date.Format "2006/01/02" }}
+        </time>
+      </li>
+      {{ end }}
+    </ul>
+    {{ else }}
+    <p class="no-posts">まだ投稿がありません。</p>
+    {{ end }}
+  </section>
+</div>
 {{ end }}

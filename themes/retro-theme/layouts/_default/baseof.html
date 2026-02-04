@@ -4,26 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} - {{ site.Title }}{{ end }}</title>
-  <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
-  <script src="{{ "js/menu.js" | relURL }}" defer></script>
+  <link rel="stylesheet" href="{{ "css/main.css" | relURL }}?v={{ now.Unix }}">
+  {{ if .IsHome }}
+  <script src="{{ "js/random-content.js" | relURL }}?v={{ now.Unix }}" defer></script>
+  {{ end }}
+  <script src="{{ "js/lightbox.js" | relURL }}?v={{ now.Unix }}" defer></script>
 </head>
 <body>
   <div class="container">
-    <!-- 左側メニュー -->
-    <nav class="sidebar">
-      {{ partial "menu.html" . }}
-    </nav>
+    <header class="site-header">
+      <h1 class="site-title">{{ site.Title }}</h1>
+      {{ partial "tab-menu.html" . }}
+    </header>
 
-    <!-- 右側iframe -->
-    <main class="content-frame">
-      <iframe
-        id="content-iframe"
-        name="content"
-        src="{{ if .IsHome }}/iframe/{{ else }}{{ .RelPermalink }}iframe/{{ end }}"
-        title="コンテンツ"
-        frameborder="0">
-      </iframe>
+    <main class="site-main">
+      {{ block "main" . }}{{ end }}
     </main>
+
+    <footer class="site-footer">
+      <p>© {{ now.Year }} {{ site.Title }}</p>
+      <p class="footer-powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> / Theme: retro-theme</p>
+      {{ with site.Params.social }}
+      <p class="footer-social">
+        {{ with .github }}<a href="{{ . }}" target="_blank" rel="noopener">🔧GitHub</a>{{ end }}
+        {{ with .twitter }}<a href="{{ . }}" target="_blank" rel="noopener">𝕏(Twitter)</a>{{ end }}
+        {{ with .linkedin }}<a href="{{ . }}" target="_blank" rel="noopener">LinkedIn</a>{{ end }}
+        {{ with .mail }}<a href="{{ . }}" target="_blank" rel="noopener">✉️E-mail</a>{{ end }}
+      </p>
+      {{ end }}
+      <p class="footer-info">{{ hugo.Generator }}</p>
+    </footer>
   </div>
 </body>
 </html>

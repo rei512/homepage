@@ -1,3 +1,36 @@
 {{ define "main" }}
-{{/* 通常アクセス時はbaseof.htmlのiframeで表示されるため、ここには何も記述しない */}}
+<div class="list-page">
+  <header class="page-header">
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}
+    <div class="page-description">
+      {{ . }}
+    </div>
+    {{ end }}
+  </header>
+
+  {{ if .Pages }}
+  <ul class="post-list">
+    {{ range .Pages }}
+    <li class="post-item">
+      <h2 class="post-item-title">
+        <a href="{{ .RelPermalink }}">
+          {{ .Title }}
+        </a>
+      </h2>
+      <time class="post-item-date" datetime="{{ .Date.Format "2006-01-02" }}">
+        {{ .Date.Format "2006/01/02" }}
+      </time>
+      {{ with .Summary }}
+      <div class="post-item-summary">
+        {{ . | plainify | truncate 150 }}
+      </div>
+      {{ end }}
+    </li>
+    {{ end }}
+  </ul>
+  {{ else }}
+  <p class="no-posts">まだコンテンツがありません。</p>
+  {{ end }}
+</div>
 {{ end }}

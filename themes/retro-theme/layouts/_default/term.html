@@ -1,3 +1,40 @@
 {{ define "main" }}
-{{/* 通常アクセス時はbaseof.htmlのiframeで表示されるため、ここには何も記述しない */}}
+<div class="term-page">
+  <header class="page-header">
+    <h1>{{ .Title }}</h1>
+    <p class="term-description">
+      {{ .Data.Plural | humanize }}: {{ .Title }}
+      <span class="term-count">({{ len .Pages }} {{ if eq (len .Pages) 1 }}post{{ else }}posts{{ end }})</span>
+    </p>
+    {{ with .Content }}
+    <div class="page-description">
+      {{ . }}
+    </div>
+    {{ end }}
+  </header>
+
+  {{ if .Pages }}
+  <ul class="post-list">
+    {{ range .Pages.ByDate.Reverse }}
+    <li class="post-item">
+      <h2 class="post-item-title">
+        <a href="{{ .RelPermalink }}">
+          {{ .Title }}
+        </a>
+      </h2>
+      <time class="post-item-date" datetime="{{ .Date.Format "2006-01-02" }}">
+        {{ .Date.Format "2006/01/02" }}
+      </time>
+      {{ with .Summary }}
+      <div class="post-item-summary">
+        {{ . | plainify | truncate 150 }}
+      </div>
+      {{ end }}
+    </li>
+    {{ end }}
+  </ul>
+  {{ else }}
+  <p class="no-posts">No posts found with this {{ .Data.Singular }}.</p>
+  {{ end }}
+</div>
 {{ end }}
