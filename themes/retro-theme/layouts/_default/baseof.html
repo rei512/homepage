@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} - {{ site.Title }}{{ end }}</title>
+  <link rel="icon" type="image/png" href="{{ "images/favicon.png" | relURL }}">
+  <link rel="apple-touch-icon" href="{{ "images/favicon.png" | relURL }}">
   {{ partial "ogp.html" . }}
   <link rel="stylesheet" href="{{ "css/main.css" | relURL }}?v={{ now.Unix }}">
   {{ if .IsHome }}
