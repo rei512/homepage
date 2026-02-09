@@ -1,6 +1,7 @@
 {{- $title := site.Title -}}
 {{- $description := site.Params.description | default "Personal blog" -}}
-{{- $ogImage := "/images/ogp-default.svg" | absURL -}}
+{{- $ogImage := "/images/top_page.png" | absURL -}}
+{{- $overlay := resources.Get "images/ogp-overlay.png" -}}
 
 {{- if not .IsHome -}}
   {{- $title = printf "%s - %s" .Title site.Title -}}
@@ -13,12 +14,13 @@
   {{- end -}}
 
   {{/* 記事のOGP画像: 1. ogpImage指定 2. 本文中の最初の画像 3. デフォルト */}}
+  {{- $baseImage := false -}}
   {{- with .Params.ogpImage -}}
     {{- $imgPath := . -}}
     {{/* Page Resourceとして解決を試みる */}}
     {{- $resource := $.Resources.GetMatch (strings.TrimPrefix "/" $imgPath) -}}
     {{- with $resource -}}
-      {{- $ogImage = .Permalink -}}
+      {{- $baseImage = . -}}
     {{- else -}}
       {{/* static配下の絶対パスとして扱う */}}
       {{- $ogImage = $imgPath | absURL -}}
@@ -32,13 +34,24 @@
       {{/* Page Resourceとして解決を試みる */}}
       {{- $resource := $.Resources.GetMatch $imgPath -}}
       {{- with $resource -}}
-        {{- $ogImage = .Permalink -}}
+        {{- $baseImage = . -}}
       {{- else -}}
         {{/* static配下の絶対パスとして扱う */}}
         {{- if hasPrefix $imgPath "/" -}}
           {{- $ogImage = $imgPath | absURL -}}
         {{- end -}}
       {{- end -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{/* Page Resourceが見つかった場合、オーバーレイを適用 */}}
+  {{- with $baseImage -}}
+    {{- $resized := .Fill "1200x630 Center" -}}
+    {{- if $overlay -}}
+      {{- $processed := $resized.Filter (images.Overlay $overlay 0 0) -}}
+      {{- $ogImage = $processed.Permalink -}}
+    {{- else -}}
+      {{- $ogImage = $resized.Permalink -}}
     {{- end -}}
   {{- end -}}
 {{- end -}}
