@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - {{ site.Title }}</title>
+  <link rel="icon" type="image/png" href="{{ "images/favicon.png" | relURL }}">
+  <link rel="apple-touch-icon" href="{{ "images/favicon.png" | relURL }}">
+  <link rel="stylesheet" href="{{ "css/main.css" | relURL }}?v={{ now.Unix }}">
+  <script src="{{ "js/random-404.js" | relURL }}?v={{ now.Unix }}" defer></script>
+</head>
+<body>
+  <div class="container">
+    <header class="site-header">
+      <h1 class="site-title">
+        <a href="{{ "/" | relURL }}">
+          <img src="{{ "images/dV_LAB_header.png" | relURL }}" alt="{{ site.Title }}" class="site-header-image">
+          <span class="site-title-text">ﾃﾞﾙﾀﾌﾞｲﾗﾎﾞ</span>
+        </a>
+      </h1>
+    </header>
+
+    <main class="site-main">
+      <div class="home-page">
+        <section class="random-showcase">
+          <div class="showcase-image">
+            <img id="random-image" src="" alt="404">
+          </div>
+          <div class="showcase-text">
+            <p id="random-flavor-text"></p>
+          </div>
+          <p class="image-credit">image: <a href="https://publicdomainq.net" target="_blank" rel="noopener">publicdomainq.net</a></p>
+        </section>
+
+        <section class="error-message">
+          <p><a href="{{ "/" | relURL }}">Homeに戻る</a></p>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <p>© {{ now.Year }} {{ site.Title }}</p>
+      <p class="footer-powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> / Theme: retro-theme</p>
+      {{ with site.Params.social }}
+      <p class="footer-social">
+        {{ with .github }}<a href="{{ . }}" target="_blank" rel="noopener">GitHub</a>{{ end }}
+        {{ with .twitter }}<a href="{{ . }}" target="_blank" rel="noopener">X(Twitter)</a>{{ end }}
+        {{ with .linkedin }}<a href="{{ . }}" target="_blank" rel="noopener">LinkedIn</a>{{ end }}
+        {{ with .mail }}<a href="{{ . }}" target="_blank" rel="noopener">E-mail</a>{{ end }}
+      </p>
+      {{ end }}
+      <p class="footer-info">{{ hugo.Generator }}</p>
+    </footer>
+  </div>
+</body>
+</html>
