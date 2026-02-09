@@ -21,7 +21,7 @@ buildFuture = true
   [params.social]
     github = "https://github.com/rei512"
     twitter = "https://twitter.com/DeltaV_Lab"
-    mail = "mailto:me@deltav-lab.org"
+    mail = "mailto:contact@deltav-lab.org"
 
 [taxonomies]
   tag = "tags"
@@ -38,11 +38,16 @@ buildFuture = true
     weight = 2
 
   [[menu.main]]
+    name = "Projects"
+    url = "/projects/"
+    weight = 3
+
+  [[menu.main]]
     name = "Posts"
     url = "/posts/"
-    weight = 3
+    weight = 4
 
   [[menu.main]]
     name = "Tags"
     url = "/tags/"
-    weight = 4
+    weight = 5
