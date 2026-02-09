@@ -22,12 +22,15 @@
     <ul class="post-list">
       {{ range first 5 site.RegularPages }}
       <li class="post-item">
-        <h3 class="post-item-title">
-          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-        </h3>
-        <time class="post-item-date" datetime="{{ .Date.Format "2006-01-02" }}">
-          {{ .Date.Format "2006/01/02" }}
-        </time>
+        {{ partial "post-thumbnail.html" . }}
+        <div class="post-item-content">
+          <h3 class="post-item-title">
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </h3>
+          <time class="post-item-date" datetime="{{ .Date.Format "2006-01-02" }}">
+            {{ .Date.Format "2006/01/02" }}
+          </time>
+        </div>
       </li>
       {{ end }}
     </ul>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <rect fill="#DDDDEE" width="1200" height="630"/>
+  <pattern id="dots" patternUnits="userSpaceOnUse" width="20" height="20">
+    <circle cx="10" cy="10" r="1" fill="#CCCCDD"/>
+  </pattern>
+  <rect fill="url(#dots)" width="1200" height="630"/>
+  <text x="600" y="280" text-anchor="middle" font-family="Times New Roman, serif" font-size="72" fill="#333366">ΔV Lab</text>
+  <text x="600" y="380" text-anchor="middle" font-family="Courier New, monospace" font-size="24" fill="#6666AA">Personal Blog</text>
+</svg>

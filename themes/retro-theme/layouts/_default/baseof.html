@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} - {{ site.Title }}{{ end }}</title>
+  {{ partial "ogp.html" . }}
   <link rel="stylesheet" href="{{ "css/main.css" | relURL }}?v={{ now.Unix }}">
   {{ if .IsHome }}
   <script src="{{ "js/random-content.js" | relURL }}?v={{ now.Unix }}" defer></script>

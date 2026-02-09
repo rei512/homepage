@@ -8,6 +8,7 @@ buildFuture = true
 [params]
   CoverImage = "/images/avatar.svg"
   CoverImageWidth = 150
+  description = "電気科の元高専生が回路を燃やしたりするブログ"
 
   # Theme Colors
   # accentColor = "#b5221c"

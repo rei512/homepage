@@ -1,0 +1,48 @@
+{{- $thumbnail := "" -}}
+{{- $hasImage := false -}}
+
+{{/* 1. ogpImage指定があればそれを使う */}}
+{{- with .Params.ogpImage -}}
+  {{- $imgPath := . -}}
+  {{/* Page Resourceとして解決を試みる */}}
+  {{- $resource := $.Resources.GetMatch (strings.TrimPrefix "/" $imgPath) -}}
+  {{- with $resource -}}
+    {{- $thumbnail = .RelPermalink -}}
+    {{- $hasImage = true -}}
+  {{- else -}}
+    {{/* static配下の絶対パスとして扱う */}}
+    {{- $thumbnail = $imgPath -}}
+    {{- $hasImage = true -}}
+  {{- end -}}
+{{- else -}}
+  {{/* 2. 本文中の最初の画像を探す（相対パス・絶対パス両方） */}}
+  {{- $content := .RawContent -}}
+  {{- $imgRegex := `!\[.*?\]\(\.?/?([^)\s"]+)` -}}
+  {{- $match := findRE $imgRegex $content 1 -}}
+  {{- with index $match 0 -}}
+    {{- $imgPath := replaceRE $imgRegex "$1" . -}}
+    {{/* Page Resourceとして解決を試みる */}}
+    {{- $resource := $.Resources.GetMatch $imgPath -}}
+    {{- with $resource -}}
+      {{- $thumbnail = .RelPermalink -}}
+      {{- $hasImage = true -}}
+    {{- else -}}
+      {{/* static配下の絶対パスとして扱う */}}
+      {{- if hasPrefix $imgPath "/" -}}
+        {{- $thumbnail = $imgPath -}}
+        {{- $hasImage = true -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{/* 画像がない場合はNoImage画像を使用 */}}
+{{- if not $hasImage -}}
+  {{- $thumbnail = "/images/no-image.svg" -}}
+{{- end -}}
+
+<div class="post-item-thumbnail">
+  <a href="{{ .RelPermalink }}">
+    <img src="{{ $thumbnail }}" alt="{{ .Title }}">
+  </a>
+</div>
