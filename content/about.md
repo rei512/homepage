@@ -51,4 +51,4 @@ Thanks for visiting!
 ## Contact Me
 [𝕏(Twitter)](https://twitter.com/deltav_lab)
 
-[E-mail](me@deltav-lab.org)
+[E-mail](mailto:me@deltav-lab.org)
