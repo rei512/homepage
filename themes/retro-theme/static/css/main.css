@@ -728,3 +728,138 @@ body {
   font-weight: bold;
   color: #6666AA;
 }
+
+/* ========================================
+   レスポンシブデザイン
+   ======================================== */
+
+/* タブリンクの改行防止 */
+.tab-link {
+  white-space: nowrap;
+}
+
+/* タブレット (768px以下) */
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 30px 15px;
+  }
+
+  .site-header-image {
+    max-width: 300px;
+  }
+
+  .site-title-text {
+    font-size: 10px;
+  }
+
+  .tab-list {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  .tab-item {
+    flex: 0 0 auto;
+  }
+
+  .tab-link {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+}
+
+/* スマートフォン (480px以下) */
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 20px 10px;
+  }
+
+  .site-header-image {
+    max-width: 200px;
+  }
+
+  .site-title {
+    margin-bottom: 20px;
+  }
+
+  .site-title-text {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+  }
+
+  .tab-menu {
+    margin-bottom: 25px;
+  }
+
+  .tab-link {
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+
+  .site-main {
+    padding: 20px 0;
+  }
+
+  /* ホームページ */
+  .landing-message {
+    padding: 15px;
+    font-size: 12px;
+    line-height: 22px;
+  }
+
+  .random-showcase {
+    padding: 15px;
+  }
+
+  .showcase-image {
+    height: 200px;
+  }
+
+  .showcase-image img {
+    height: 200px;
+  }
+
+  /* 記事リスト */
+  .post-item {
+    flex-direction: column;
+  }
+
+  .post-item-thumbnail {
+    width: 100%;
+    height: 150px;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .post-item-thumbnail img {
+    height: 150px;
+  }
+
+  .post-item-content {
+    width: 100%;
+  }
+
+  .post-item-title {
+    font-size: 14px;
+  }
+
+  /* 個別記事 */
+  .post-title {
+    font-size: 20px;
+  }
+
+  .post-content h2 {
+    font-size: 16px;
+  }
+
+  .post-content h3 {
+    font-size: 14px;
+  }
+
+  /* フッター */
+  .footer-social a {
+    margin: 0 4px;
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+}
