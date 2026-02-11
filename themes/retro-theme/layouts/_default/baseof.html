@@ -62,13 +62,22 @@
       <p class="footer-info">{{ hugo.Generator }}</p>
     </footer>
     <script>
-      // 90年代風アクセスカウンター（フェイク）
+      // 90年代風アクセスカウンター（Cloudflare D1使用）
       const counter = document.getElementById('visitor-counter');
       if (counter) {
-        let count = parseInt(localStorage.getItem('fakeVisitorCount') || '0');
-        count += Math.floor(Math.random() * 3) + 1;
-        localStorage.setItem('fakeVisitorCount', count.toString());
-        counter.textContent = count.toString().padStart(6, '0');
+        fetch('/api/counter')
+          .then(res => res.json())
+          .then(data => {
+            if (data.count !== undefined) {
+              counter.textContent = data.count.toString().padStart(6, '0');
+            }
+          })
+          .catch(() => {
+            // エラー時はローカルフォールバック
+            let count = parseInt(localStorage.getItem('fallbackCount') || '0') + 1;
+            localStorage.setItem('fallbackCount', count.toString());
+            counter.textContent = count.toString().padStart(6, '0');
+          });
       }
     </script>
   </div>
