@@ -25,14 +25,19 @@ export async function onRequest(context) {
 
   // Refererチェック（セキュリティ対策）
   const referer = request.headers.get('Referer');
-  const allowedOrigins = ['https://deltav-lab.org', 'http://localhost'];
-  const isAllowed = !referer || allowedOrigins.some(origin => referer.startsWith(origin));
-
-  if (!isAllowed) {
-    return new Response(JSON.stringify({ error: 'Forbidden' }), {
-      status: 403,
-      headers,
-    });
+  if (referer) {
+    try {
+      const url = new URL(referer);
+      const allowedHosts = ['deltav-lab.org', 'www.deltav-lab.org', 'blog.deltav-lab.org', 'localhost'];
+      if (!allowedHosts.includes(url.hostname)) {
+        return new Response(JSON.stringify({ error: 'Forbidden' }), {
+          status: 403,
+          headers,
+        });
+      }
+    } catch {
+      // Referer解析失敗時は許可
+    }
   }
 
   try {
