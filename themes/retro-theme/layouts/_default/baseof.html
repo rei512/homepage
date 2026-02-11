@@ -34,9 +34,14 @@
         <span class="marquee-text">★☆★ Welcome to {{ site.Title }}!! ★☆★ このサイトは800x600以上の解像度でご覧ください ★☆★ IE4.0以上推奨 ★☆★</span>
       </div>
       <div class="footer-counter">
-        <span class="counter-label">あなたは</span>
-        <span class="counter-digits" id="visitor-counter">000000</span>
-        <span class="counter-label">人目の訪問者です！</span>
+        <span class="counter-digits" id="visitor-counter">
+          <img src="{{ "images/counter/0.gif" | relURL }}" alt="0" class="counter-img">
+          <img src="{{ "images/counter/0.gif" | relURL }}" alt="0" class="counter-img">
+          <img src="{{ "images/counter/0.gif" | relURL }}" alt="0" class="counter-img">
+          <img src="{{ "images/counter/0.gif" | relURL }}" alt="0" class="counter-img">
+          <img src="{{ "images/counter/0.gif" | relURL }}" alt="0" class="counter-img">
+          <img src="{{ "images/counter/0.gif" | relURL }}" alt="0" class="counter-img">
+        </span>
       </div>
       <p>© {{ now.Year }} {{ site.Title }}</p>
       <p class="footer-powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> / Theme: retro-theme</p>
@@ -63,26 +68,47 @@
     </footer>
     <script>
       // 90年代風アクセスカウンター（Cloudflare D1使用）
-      const counter = document.getElementById('visitor-counter');
-      if (counter) {
-        const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
-        if (isLocal) {
-          // ローカル開発時はlocalStorageカウンター
-          let count = parseInt(localStorage.getItem('devCount') || '0') + 1;
-          localStorage.setItem('devCount', count.toString());
-          counter.textContent = count.toString().padStart(6, '0');
-        } else {
-          // 本番環境はCloudflare D1 API
-          fetch('/api/counter')
-            .then(res => res.json())
-            .then(data => {
-              if (data.count !== undefined) {
-                counter.textContent = data.count.toString().padStart(6, '0');
-              }
-            })
-            .catch(() => {
-              counter.textContent = '------';
-            });
+      var counterEl = document.getElementById('visitor-counter');
+      if (counterEl) {
+        var basePath = document.querySelector('#visitor-counter img').src.replace(/\/\d\.gif.*$/, '/');
+        // 0-9の画像をプリロード
+        var preloaded = {};
+        var loaded = 0;
+        for (var d = 0; d <= 9; d++) {
+          (function(digit) {
+            var img = new Image();
+            img.onload = function() {
+              preloaded[digit] = img;
+              loaded++;
+              if (loaded === 10) onAllLoaded();
+            };
+            img.src = basePath + digit + '.gif';
+          })(d);
+        }
+        function updateCounter(count) {
+          var digits = count.toString().padStart(6, '0');
+          var imgs = document.querySelectorAll('#visitor-counter .counter-img');
+          imgs.forEach(function(img, i) {
+            img.src = basePath + digits[i] + '.gif';
+            img.alt = digits[i];
+          });
+        }
+        function onAllLoaded() {
+          var isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+          if (isLocal) {
+            var count = parseInt(localStorage.getItem('devCount') || '0') + 1;
+            localStorage.setItem('devCount', count.toString());
+            updateCounter(count);
+          } else {
+            fetch('/api/counter')
+              .then(function(res) { return res.json(); })
+              .then(function(data) {
+                if (data.count !== undefined) {
+                  updateCounter(data.count);
+                }
+              })
+              .catch(function() {});
+          }
         }
       }
     </script>

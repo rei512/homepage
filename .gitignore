@@ -15,3 +15,5 @@ hugo.linux
 # Node
 node_modules/
 package-lock.json
+
+*Zone.Identifier

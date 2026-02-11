@@ -1138,29 +1138,23 @@ body {
 /* アクセスカウンター */
 .footer-counter {
   margin: 15px 0;
-  padding: 10px;
-  background: #000000;
   display: inline-block;
-  border: 3px inset #808080;
-}
-
-.counter-label {
-  color: #00ff00;
-  font-size: 11px;
+  background: #ffffff;
+  padding: 4px;
+  border: 2px inset #808080;
 }
 
 .counter-digits {
-  display: inline-block;
-  background: #001100;
-  color: #00ff00;
-  font-family: 'Courier New', monospace;
-  font-size: 16px;
-  font-weight: bold;
-  padding: 3px 8px;
-  margin: 0 5px;
-  border: 2px inset #003300;
-  letter-spacing: 2px;
-  text-shadow: 0 0 5px #00ff00;
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 0;
+}
+
+.counter-img {
+  width: 50px;
+  height: 100px;
+  image-rendering: pixelated;
+  display: block;
 }
 
 /* 88x31バナー */
