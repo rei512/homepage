@@ -30,23 +30,47 @@
     </main>
 
     <footer class="site-footer">
+      <div class="footer-marquee">
+        <span class="marquee-text">★☆★ Welcome to {{ site.Title }}!! ★☆★ このサイトは800x600以上の解像度でご覧ください ★☆★ IE4.0以上推奨 ★☆★</span>
+      </div>
+      <div class="footer-counter">
+        <span class="counter-label">あなたは</span>
+        <span class="counter-digits" id="visitor-counter">000000</span>
+        <span class="counter-label">人目の訪問者です！</span>
+      </div>
       <p>© {{ now.Year }} {{ site.Title }}</p>
       <p class="footer-powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> / Theme: retro-theme</p>
       {{ with site.Params.social }}
       <p class="footer-social">
-        {{ with .github }}<a href="{{ . }}" target="_blank" rel="noopener">🔧GitHub</a>{{ end }}
-        {{ with .twitter }}<a href="{{ . }}" target="_blank" rel="noopener">𝕏(Twitter)</a>{{ end }}
+        {{ with .github }}<a href="{{ . }}" target="_blank" rel="noopener">GitHub</a>{{ end }}
+        {{ with .twitter }}<a href="{{ . }}" target="_blank" rel="noopener">Twitter</a>{{ end }}
         {{ with .linkedin }}<a href="{{ . }}" target="_blank" rel="noopener">LinkedIn</a>{{ end }}
-        {{ with .mail }}<a href="{{ . }}" target="_blank" rel="noopener">✉️E-mail</a>{{ end }}
+        {{ with .mail }}<a href="{{ . }}" target="_blank" rel="noopener">E-mail</a>{{ end }}
       </p>
       {{ end }}
+      <div class="footer-links-88x31">
+        <img src="https://web.archive.org/web/20091027013530im_/http://geocities.com/js_source/img/gc_icon.gif" alt="GeoCities" title="GeoCities" width="88" height="31">
+        <img src="https://anlucas.neocities.org/88x31Buttons/ie_logo.gif" alt="Internet Explorer" title="Best viewed with Internet Explorer" width="88" height="31">
+        <img src="https://anlucas.neocities.org/88x31Buttons/notepad.gif" alt="Made with Notepad" title="Made with Notepad" width="88" height="31">
+      </div>
       <div class="footer-banner">
         <a href="{{ "/banner/" | relURL }}" title="個人ブログ文化">
           <img src="{{ "images/dV_LAB_banner.png" | relURL }}" alt="個人ブログ文化">
         </a>
       </div>
+      <p class="footer-construction">🚧 このサイトは永遠に工事中です 🚧</p>
       <p class="footer-info">{{ hugo.Generator }}</p>
     </footer>
+    <script>
+      // 90年代風アクセスカウンター（フェイク）
+      const counter = document.getElementById('visitor-counter');
+      if (counter) {
+        let count = parseInt(localStorage.getItem('fakeVisitorCount') || '0');
+        count += Math.floor(Math.random() * 3) + 1;
+        localStorage.setItem('fakeVisitorCount', count.toString());
+        counter.textContent = count.toString().padStart(6, '0');
+      }
+    </script>
   </div>
 </body>
 </html>
