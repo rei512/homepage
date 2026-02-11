@@ -372,6 +372,101 @@ body {
   text-decoration: underline;
 }
 
+/* シェアボタン */
+.share-buttons {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin: 10px 0;
+}
+
+.share-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #EEEEF5;
+  cursor: pointer;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.share-toggle:hover,
+.share-toggle:focus,
+.share-toggle:active {
+  background: #DDDDEE;
+  outline: none;
+}
+
+.share-toggle img {
+  width: 14px;
+  height: 14px;
+  opacity: 0.5;
+}
+
+.share-toggle:hover img,
+.share-toggle:focus img {
+  opacity: 0.7;
+}
+
+.share-desktop {
+  display: none;
+}
+
+.share-buttons.open .share-toggle {
+  background: #DDDDEE;
+}
+
+.share-buttons.open .share-toggle img {
+  opacity: 0.7;
+}
+
+.share-buttons.open .share-desktop {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.share-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  font-size: 11px;
+  font-family: 'Courier New', 'MS Gothic', monospace;
+  text-decoration: none;
+  border: 1px solid #CCCCDD;
+  background: #EEEEF5;
+  color: #6666AA;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.share-icon:hover {
+  background: #DDDDEE;
+  border-color: #6666AA;
+  color: #4444AA;
+}
+
+.share-copy {
+  padding: 0;
+}
+
+.share-copy img {
+  width: 12px;
+  height: 12px;
+  opacity: 0.6;
+}
+
+.share-copy:hover img {
+  opacity: 0.8;
+}
+
 .post-content {
   margin-bottom: 40px;
 }
@@ -861,5 +956,10 @@ body {
     margin: 0 4px;
     display: inline-block;
     margin-bottom: 5px;
+  }
+
+  /* シェアボタン - モバイルはOSシェアのみ */
+  .share-buttons.open .share-desktop {
+    display: none;
   }
 }

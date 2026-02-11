@@ -1,0 +1,41 @@
+<div class="share-buttons">
+  <button class="share-toggle" onclick="toggleShare(this)" title="シェア">
+    <img src="{{ "images/share.png" | relURL }}" alt="Share">
+  </button>
+  <span class="share-desktop">
+    <a href="https://twitter.com/intent/tweet?url={{ .Permalink }}&text={{ .Title }} - {{ site.Title }}"
+       target="_blank" rel="noopener" class="share-icon" title="X(Twitter)">𝕏</a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink }}"
+       target="_blank" rel="noopener" class="share-icon" title="Facebook">f</a>
+    <a href="https://b.hatena.ne.jp/entry/{{ .Permalink }}"
+       target="_blank" rel="noopener" class="share-icon" title="はてなブックマーク">B!</a>
+    <a href="https://social-plugins.line.me/lineit/share?url={{ .Permalink }}"
+       target="_blank" rel="noopener" class="share-icon" title="LINE">L</a>
+    <button class="share-icon share-copy" onclick="copyUrl('{{ .Permalink }}')" title="URLをコピー">
+      <img src="{{ "images/copy.png" | relURL }}" alt="Copy">
+    </button>
+  </span>
+</div>
+
+<script>
+function toggleShare(btn) {
+  if (navigator.share && window.innerWidth <= 480) {
+    navigator.share({
+      title: '{{ .Title }}',
+      text: '{{ .Title }} - {{ site.Title }}',
+      url: '{{ .Permalink }}'
+    });
+  } else {
+    var container = btn.closest('.share-buttons');
+    container.classList.toggle('open');
+  }
+}
+
+function copyUrl(url) {
+  navigator.clipboard.writeText(url).then(function() {
+    alert('URLをコピーしました');
+  }).catch(function() {
+    prompt('URLをコピーしてください:', url);
+  });
+}
+</script>
