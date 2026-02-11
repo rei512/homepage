@@ -40,6 +40,11 @@
         {{ with .mail }}<a href="{{ . }}" target="_blank" rel="noopener">✉️E-mail</a>{{ end }}
       </p>
       {{ end }}
+      <div class="footer-banner">
+        <a href="{{ "/banner/" | relURL }}" title="個人ブログ文化">
+          <img src="{{ "images/dV_LAB_banner.png" | relURL }}" alt="個人ブログ文化">
+        </a>
+      </div>
       <p class="footer-info">{{ hugo.Generator }}</p>
     </footer>
   </div>

@@ -3,7 +3,7 @@
     <img src="{{ "images/share.png" | relURL }}" alt="Share">
   </button>
   <span class="share-desktop">
-    <a href="https://twitter.com/intent/tweet?url={{ .Permalink }}&text={{ .Title }} - {{ site.Title }}"
+    <a href="https://twitter.com/intent/tweet?url={{ .Permalink }}&text={{ .Title }} - {{ site.Title }}%0A"
        target="_blank" rel="noopener" class="share-icon" title="X(Twitter)">𝕏</a>
     <a href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink }}"
        target="_blank" rel="noopener" class="share-icon" title="Facebook">f</a>
@@ -22,7 +22,7 @@ function toggleShare(btn) {
   if (navigator.share && window.innerWidth <= 480) {
     navigator.share({
       title: '{{ .Title }}',
-      text: '{{ .Title }} - {{ site.Title }}',
+      text: '{{ .Title }} - {{ site.Title }}\n',
       url: '{{ .Permalink }}'
     });
   } else {

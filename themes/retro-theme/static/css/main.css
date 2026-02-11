@@ -145,6 +145,15 @@ body {
   content: ' ]';
 }
 
+.footer-banner {
+  margin: 15px 0;
+}
+
+.footer-banner img {
+  max-height: 40px;
+  border: 1px solid #AAAACC;
+}
+
 .footer-info {
   margin-top: 12px;
   font-size: 10px;
