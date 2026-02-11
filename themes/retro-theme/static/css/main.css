@@ -279,6 +279,11 @@ body {
   font-size: 14px;
 }
 
+.landing-counter {
+  text-align: center;
+  margin-top: 10px;
+}
+
 .random-showcase {
   margin-bottom: 30px;
   padding: 15px;

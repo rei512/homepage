@@ -33,6 +33,7 @@
       <div class="footer-marquee">
         <span class="marquee-text">★☆★ Welcome to {{ site.Title }}!! ★☆★ このサイトは800x600以上の解像度でご覧ください ★☆★ IE4.0以上推奨 ★☆★</span>
       </div>
+      {{ if not .IsHome }}
       <div class="footer-counter">
         <span class="counter-digits" id="visitor-counter">
           <img src="{{ "images/counter/0.gif" | relURL }}" alt="0" class="counter-img">
@@ -43,6 +44,7 @@
           <img src="{{ "images/counter/0.gif" | relURL }}" alt="0" class="counter-img">
         </span>
       </div>
+      {{ end }}
       <p>© {{ now.Year }} {{ site.Title }}</p>
       <p class="footer-powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> / Theme: retro-theme</p>
       {{ with site.Params.social }}
@@ -68,17 +70,16 @@
     </footer>
     <script>
       // 90年代風アクセスカウンター（Cloudflare D1使用）
-      var counterEl = document.getElementById('visitor-counter');
+      var counterEl = document.getElementById('landing-counter') || document.getElementById('visitor-counter');
       if (counterEl) {
-        var basePath = document.querySelector('#visitor-counter img').src.replace(/\/\d\.gif.*$/, '/');
+        var firstImg = counterEl.querySelector('img');
+        var basePath = firstImg.src.replace(/\/\d\.gif.*$/, '/');
         // 0-9の画像をプリロード
-        var preloaded = {};
         var loaded = 0;
         for (var d = 0; d <= 9; d++) {
           (function(digit) {
             var img = new Image();
             img.onload = function() {
-              preloaded[digit] = img;
               loaded++;
               if (loaded === 10) onAllLoaded();
             };
@@ -87,7 +88,7 @@
         }
         function updateCounter(count) {
           var digits = count.toString().padStart(6, '0');
-          var imgs = document.querySelectorAll('#visitor-counter .counter-img');
+          var imgs = counterEl.querySelectorAll('.counter-img');
           imgs.forEach(function(img, i) {
             img.src = basePath + digits[i] + '.gif';
             img.alt = digits[i];
