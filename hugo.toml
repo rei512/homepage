@@ -23,6 +23,10 @@ buildFuture = true
     twitter = "https://twitter.com/DeltaV_Lab"
     mail = "mailto:contact@deltav-lab.org"
 
+[services]
+  [services.googleAnalytics]
+    ID = "G-XRDYHTJP4N"   # ← 取得した測定IDに置き換えてください
+
 [taxonomies]
   tag = "tags"
 
