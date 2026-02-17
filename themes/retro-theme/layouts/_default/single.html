@@ -42,7 +42,13 @@
   </div>
   {{ end }}
 
-  {{ partial "share-buttons.html" . }}
+  <div class="post-actions">
+    {{ partial "share-buttons.html" . }}
+    <button class="iine-button" id="iine-btn" onclick="toggleIine()">
+      <span class="iine-icon">&#x2764;</span>
+      <span class="iine-count" id="iine-count">0</span>
+    </button>
+  </div>
 
   <nav class="post-nav post-nav-bottom">
     <div class="nav-item nav-prev">
@@ -62,5 +68,24 @@
       {{ end }}
     </div>
   </nav>
+
+  <!-- コメント -->
+  <div class="comment-section">
+    <div class="comment-header">コメント (<span id="comment-count">0</span>件)</div>
+    <div class="comment-list" id="comment-list"></div>
+    <form id="comment-form" class="comment-form" onsubmit="submitComment(event)">
+      <input type="text" id="comment-author" name="author"
+             maxlength="50" required placeholder="名前" value="名無し">
+      <textarea id="comment-body" name="body"
+                maxlength="1000" rows="3" required
+                placeholder="コメントを入力..."></textarea>
+      <div class="comment-form-footer">
+        <span class="comment-status" id="comment-status"></span>
+        <button type="submit" class="comment-submit" id="comment-submit">送信</button>
+      </div>
+    </form>
+  </div>
+
+  <script>var POST_SLUG = '{{ .RelPermalink }}';</script>
 </article>
 {{ end }}

@@ -1185,6 +1185,204 @@ body {
 }
 
 /* ========================================
+   シェア＋イイネ 横並びエリア
+   ======================================== */
+
+.post-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.post-actions .share-buttons {
+  margin: 0;
+}
+
+/* イイネボタン（シェアボタンと同じサイズ感） */
+.iine-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 8px;
+  font-family: 'MS Gothic', 'MS PGothic', monospace;
+  font-size: 10px;
+  color: #000080;
+  background: #c0c0c0;
+  border: 2px outset #ffffff;
+  cursor: pointer;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.iine-button:hover {
+  background: #a0a0a0;
+  border-style: inset;
+}
+
+.iine-button:active {
+  border-style: inset;
+}
+
+.iine-button.iine-liked {
+  background: #a0a0a0;
+  border-style: inset;
+  color: #ff0000;
+}
+
+.iine-icon {
+  font-size: 12px;
+}
+
+.iine-count {
+  font-size: 10px;
+  font-weight: bold;
+}
+
+/* ========================================
+   コメントセクション
+   ======================================== */
+
+.comment-section {
+  margin-top: 15px;
+  border: 1px solid #808080;
+}
+
+.comment-header {
+  background: #c0c0c0;
+  padding: 4px 8px;
+  font-size: 11px;
+  font-weight: bold;
+  border-bottom: 1px solid #808080;
+}
+
+.comment-list {
+  padding: 8px;
+  background: #ffffff;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.comment-list:empty {
+  display: none;
+}
+
+.comment-item {
+  padding: 6px 0;
+  border-bottom: 1px dashed #c0c0c0;
+  font-size: 11px;
+}
+
+.comment-item:last-child {
+  border-bottom: none;
+}
+
+.comment-meta {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  margin-bottom: 3px;
+}
+
+.comment-author {
+  font-weight: bold;
+  color: #000080;
+  font-size: 11px;
+}
+
+.comment-date {
+  font-size: 9px;
+  color: #808080;
+}
+
+.comment-body {
+  font-size: 11px;
+  line-height: 1.5;
+  color: #000000;
+  word-break: break-word;
+}
+
+.no-comments {
+  color: #808080;
+  text-align: center;
+  padding: 15px;
+  font-size: 11px;
+}
+
+/* コメントフォーム */
+.comment-form {
+  padding: 8px;
+  background: #e8e8e8;
+  border-top: 1px solid #808080;
+}
+
+.comment-form input,
+.comment-form textarea {
+  width: 100%;
+  padding: 3px 5px;
+  font-family: 'MS Gothic', 'MS PGothic', monospace;
+  font-size: 11px;
+  background: #ffffff;
+  border: 1px solid #808080;
+  color: #000000;
+  outline: none;
+  resize: vertical;
+  box-sizing: border-box;
+  margin-bottom: 5px;
+}
+
+.comment-form input:focus,
+.comment-form textarea:focus {
+  border-color: #000080;
+}
+
+.comment-form-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comment-submit {
+  padding: 3px 14px;
+  font-family: 'MS Gothic', 'MS PGothic', monospace;
+  font-size: 11px;
+  color: #000000;
+  background: #c0c0c0;
+  border: 2px outset #ffffff;
+  cursor: pointer;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.comment-submit:hover {
+  background: #a0a0a0;
+  border-style: inset;
+}
+
+.comment-submit:active {
+  border-style: inset;
+}
+
+.comment-submit:disabled {
+  color: #808080;
+  cursor: default;
+}
+
+.comment-status {
+  font-size: 10px;
+}
+
+.comment-status-success {
+  color: #008000;
+}
+
+.comment-status-error {
+  color: #ff0000;
+}
+
+/* ========================================
    レスポンシブデザイン
    ======================================== */
 
@@ -1361,5 +1559,15 @@ body {
 
   .nav-item a {
     font-size: 10px;
+  }
+
+  /* コメント */
+  .comment-meta {
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .comment-list {
+    max-height: 300px;
   }
 }
