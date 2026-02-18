@@ -15,6 +15,9 @@
   <script src="{{ "js/lightbox.js" | relURL }}?v={{ now.Unix }}" defer></script>
   {{ if and (not .IsHome) (eq .Kind "page") (eq .Section "posts") }}
   <script src="{{ "js/post-interactions.js" | relURL }}?v={{ now.Unix }}" defer></script>
+  {{ if site.Params.turnstileSiteKey }}
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  {{ end }}
   {{ end }}
 </head>
 <body>
