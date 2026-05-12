@@ -1,6 +1,6 @@
 +++
 title = 'Obsidian → Hugo 自動公開パイプライン'
-date = 2026-05-13T03:41:24+09:00
+date = 2026-05-13T03:49:14+09:00
 draft = false
 categories = ['Projects']
 tags = ['Docker', 'Hugo', 'Obsidian', 'Python', '自動化', 'Cloudflare']
@@ -8,8 +8,6 @@ image = ''
 description = 'Obsidian Syncで管理するVaultの記事を、任意のデバイスから書くだけでHugoブログへ自動変換・デプロイするパイプラインの設計と実装記録'
 ogpImage = ''
 +++
-
-# Obsidian → Hugo 自動公開パイプライン
 
 ## 概要
 
