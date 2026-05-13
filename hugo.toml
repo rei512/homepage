@@ -17,6 +17,9 @@ buildFuture = true
   # Project display mode: true for carousel, false for grid
   useProjectCarousel = true
 
+  # Cloudflare Turnstile (コメントフォームの CAPTCHA)
+  turnstileSiteKey = "0x4AAAAAADOmqXzGQ1WqCVXf"
+
   # Social Media Links
   [params.social]
     github = "https://github.com/rei512"
