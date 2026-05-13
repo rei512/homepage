@@ -1,5 +1,14 @@
 // Cloudflare Pages Functions - アクセスカウンターAPI
 // D1データベースを使用して訪問者数をカウント
+// 同一IPからの10分以内のアクセスは重複カウントしない
+
+async function hashIP(ip) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(ip + '-counter-salt');
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
 
 export async function onRequest(context) {
   const { request, env } = context;
@@ -48,10 +57,26 @@ export async function onRequest(context) {
       });
     }
 
-    // カウントをインクリメント（Prepared Statement使用）
-    await env.DB.prepare(
-      'UPDATE visits SET count = count + 1 WHERE id = 1'
-    ).run();
+    // IPハッシュで重複チェック（10分間）
+    const clientIP = request.headers.get('CF-Connecting-IP') || 'unknown';
+    const ipHash = await hashIP(clientIP);
+
+    const recentVisit = await env.DB.prepare(
+      "SELECT 1 FROM counter_visits WHERE ip_hash = ? AND visited_at > datetime('now', '-10 minutes')"
+    ).bind(ipHash).first();
+
+    if (!recentVisit) {
+      // 10分以内の訪問がない → カウントをインクリメント
+      await env.DB.prepare(
+        'UPDATE visits SET count = count + 1 WHERE id = 1'
+      ).run();
+
+      // 訪問記録を UPSERT（同一IPの既存レコードは更新）
+      await env.DB.prepare(
+        "INSERT INTO counter_visits (ip_hash, visited_at) VALUES (?, datetime('now')) ON CONFLICT(ip_hash) DO UPDATE SET visited_at = datetime('now')"
+      ).bind(ipHash).run();
+    }
+    // 10分以内に訪問済みの場合はカウントせず、現在値だけ返す
 
     // 現在のカウントを取得
     const result = await env.DB.prepare(

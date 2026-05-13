@@ -1337,6 +1337,10 @@ body {
   border-color: #000080;
 }
 
+.comment-form .cf-turnstile {
+  margin-bottom: 5px;
+}
+
 .comment-form-footer {
   display: flex;
   justify-content: space-between;

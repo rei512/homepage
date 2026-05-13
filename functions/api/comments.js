@@ -67,6 +67,33 @@ export async function onRequest(context) {
       const author = (body.author || '').trim();
       const commentBody = (body.body || '').trim();
 
+      // Cloudflare Turnstile 検証（シークレットキーが設定されている場合のみ）
+      if (env.TURNSTILE_SECRET) {
+        const turnstileToken = body['cf-turnstile-response'] || '';
+        if (!turnstileToken) {
+          return new Response(JSON.stringify({ error: 'CAPTCHA認証が必要です' }), {
+            status: 400,
+            headers,
+          });
+        }
+        const verifyRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            secret: env.TURNSTILE_SECRET,
+            response: turnstileToken,
+            remoteip: request.headers.get('CF-Connecting-IP'),
+          }),
+        });
+        const verifyData = await verifyRes.json();
+        if (!verifyData.success) {
+          return new Response(JSON.stringify({ error: 'CAPTCHA認証に失敗しました。もう一度お試しください。' }), {
+            status: 403,
+            headers,
+          });
+        }
+      }
+
       // バリデーション
       if (!slug || typeof slug !== 'string' || slug.length > 200) {
         return new Response(JSON.stringify({ error: 'Invalid slug' }), {

@@ -52,7 +52,10 @@
     fetch('/api/likes?slug=' + encodeURIComponent(POST_SLUG))
       .then(function(res) { return res.json(); })
       .then(function(data) {
-        updateIineUI(data.count || 0, hasLiked());
+        // サーバーからliked状態を受け取り、localStorageも同期
+        var liked = data.liked !== undefined ? data.liked : hasLiked();
+        setLikedState(liked);
+        updateIineUI(data.count || 0, liked);
       })
       .catch(function() {});
   }
@@ -84,8 +87,9 @@
     .then(function(res) { return res.json(); })
     .then(function(data) {
       if (data.count !== undefined) {
-        setLikedState(!liked);
-        updateIineUI(data.count, !liked);
+        var newLiked = data.liked !== undefined ? data.liked : !liked;
+        setLikedState(newLiked);
+        updateIineUI(data.count, newLiked);
       }
     })
     .catch(function() {})
@@ -212,10 +216,14 @@
       return;
     }
 
+    // Turnstileトークンを取得（ウィジェットがある場合）
+    var turnstileInput = document.querySelector('[name="cf-turnstile-response"]');
+    var turnstileToken = turnstileInput ? turnstileInput.value : '';
+
     fetch('/api/comments', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ slug: POST_SLUG, author: author, body: body })
+      body: JSON.stringify({ slug: POST_SLUG, author: author, body: body, 'cf-turnstile-response': turnstileToken })
     })
     .then(function(res) {
       return res.json().then(function(d) { return { ok: res.ok, data: d }; });
@@ -239,12 +247,15 @@
           commentStatus.className = 'comment-status comment-status-error';
         }
       }
+      // Turnstileをリセット
+      if (typeof turnstile !== 'undefined') turnstile.reset();
     })
     .catch(function() {
       if (commentStatus) {
         commentStatus.textContent = '送信に失敗しました';
         commentStatus.className = 'comment-status comment-status-error';
       }
+      if (typeof turnstile !== 'undefined') turnstile.reset();
     })
     .finally(function() {
       if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = '送信'; }
