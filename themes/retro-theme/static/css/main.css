@@ -470,13 +470,6 @@ body {
 .error-message {
   text-align: center;
   padding: 30px 20px;
-  background: repeating-linear-gradient(
-    45deg,
-    #ffff00,
-    #ffff00 10px,
-    #000000 10px,
-    #000000 20px
-  );
 }
 
 .error-message h2 {
