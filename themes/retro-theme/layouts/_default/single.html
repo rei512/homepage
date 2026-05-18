@@ -79,10 +79,10 @@
       <textarea id="comment-body" name="body"
                 maxlength="1000" rows="3" required
                 placeholder="コメントを入力..."></textarea>
-      {{ if site.Params.turnstileSiteKey }}
-      <div class="cf-turnstile" data-sitekey="{{ site.Params.turnstileSiteKey }}" data-theme="light" data-size="compact"></div>
-      {{ end }}
       <div class="comment-form-footer">
+        {{ if site.Params.turnstileSiteKey }}
+        <div class="cf-turnstile" data-sitekey="{{ site.Params.turnstileSiteKey }}" data-theme="light" data-size="normal"></div>
+        {{ end }}
         <span class="comment-status" id="comment-status"></span>
         <button type="submit" class="comment-submit" id="comment-submit">送信</button>
       </div>

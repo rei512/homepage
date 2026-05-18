@@ -1331,13 +1331,19 @@ body {
 }
 
 .comment-form .cf-turnstile {
-  margin-bottom: 5px;
+  /* normal (300x65) を 0.8 倍に縮小 → 見た目 240x52 */
+  transform: scale(0.8);
+  transform-origin: bottom left;
+  /* 縮小で残る枠の余白を負マージンで詰める (右60px / 上13px) */
+  margin: -13px -60px 0 0;
 }
 
 .comment-form-footer {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
+  gap: 8px;
 }
 
 .comment-submit {
