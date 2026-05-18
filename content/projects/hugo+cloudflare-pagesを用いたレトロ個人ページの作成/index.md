@@ -1,6 +1,6 @@
 +++
-title = 'ここに表示タイトル'
-date = 2026-05-14T03:03:54+09:00
+title = 'Hugo+Cloudflare pagesを用いたレトロ個人ページの作成'
+date = 2026-05-19T02:39:59+09:00
 draft = false
 categories = ['Projects']
 tags = ['Cloudflare', 'Hugo']
