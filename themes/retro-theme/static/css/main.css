@@ -180,7 +180,7 @@ body {
   background: linear-gradient(180deg, #c0c0c0, #a0a0a0);
   border-top: 2px outset #ffffff;
   text-align: center;
-  font-size: 10px;
+  font-size: 12px;
   color: #000080;
   line-height: 20px;
 }
@@ -189,7 +189,7 @@ body {
   content: '═══════════════════════════════════════════════';
   display: block;
   color: #ff00ff;
-  font-size: 8px;
+  font-size: 9px;
   margin-bottom: 10px;
   letter-spacing: -2px;
 }
@@ -244,7 +244,7 @@ body {
 
 .footer-info {
   margin-top: 12px;
-  font-size: 9px;
+  font-size: 11px;
   color: #808080;
 }
 
@@ -1130,7 +1130,7 @@ body {
   display: inline-block;
   white-space: nowrap;
   animation: marquee 15s linear infinite;
-  font-size: 11px;
+  font-size: 13px;
 }
 
 /* アクセスカウンター */
@@ -1541,7 +1541,7 @@ body {
   .footer-social a {
     margin: 2px;
     padding: 2px 5px;
-    font-size: 9px;
+    font-size: 11px;
   }
 
   .site-footer::before {
