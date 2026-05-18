@@ -18,6 +18,9 @@ buildFuture = true
   useProjectCarousel = true
 
   # Cloudflare Turnstile (コメントフォームの CAPTCHA)
+  # 検証用
+  # 失敗キー:2x00000000000000000000AB
+  # 成功キー:1x00000000000000000000AA
   turnstileSiteKey = "0x4AAAAAADOmqXzGQ1WqCVXf"
 
   # Social Media Links

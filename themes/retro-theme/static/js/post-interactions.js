@@ -192,6 +192,20 @@
 
     if (!author || !body) return;
 
+    // Turnstile ウィジェットがある場合は認証成功を必須にする（失敗時は送信不可）
+    var turnstileWidget = document.querySelector('.cf-turnstile');
+    var turnstileToken = '';
+    if (turnstileWidget) {
+      turnstileToken = (typeof turnstile !== 'undefined') ? (turnstile.getResponse() || '') : '';
+      if (!turnstileToken) {
+        if (commentStatus) {
+          commentStatus.textContent = 'CAPTCHA認証を完了してください';
+          commentStatus.className = 'comment-status comment-status-error';
+        }
+        return;
+      }
+    }
+
     if (submitBtn) {
       submitBtn.disabled = true;
       submitBtn.textContent = '送信中...';
@@ -215,10 +229,6 @@
       }
       return;
     }
-
-    // Turnstileトークンを取得（ウィジェットがある場合）
-    var turnstileInput = document.querySelector('[name="cf-turnstile-response"]');
-    var turnstileToken = turnstileInput ? turnstileInput.value : '';
 
     fetch('/api/comments', {
       method: 'POST',
