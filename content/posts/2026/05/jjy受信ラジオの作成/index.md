@@ -7,8 +7,8 @@ tags = []
 image = ''
 description = 'ここに記事の解説'
 ogpImage = ''
+WIP = 'true'
 +++
-WIP\
 ## JJYとは
 >標準電波（JJY※）は、NICTが決定した標準周波数と日本標準時を日本全国に供給するための電波です。
 [https://www.nict.go.jp/sts/jjy.html]\

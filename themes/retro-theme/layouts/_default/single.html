@@ -28,6 +28,8 @@
     </div>
   </header>
 
+  {{ if .Params.wip }}<div class="wip-bar">WIP</div>{{ end }}
+
   <div class="post-content">
     {{ .Content }}
   </div>
