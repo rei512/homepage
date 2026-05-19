@@ -20,3 +20,5 @@ package-lock.json
 
 # Documentation (local only)
 /docs/
+
+.gitignore
