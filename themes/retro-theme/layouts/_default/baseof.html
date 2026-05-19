@@ -13,6 +13,7 @@
   <script src="{{ "js/random-content.js" | relURL }}?v={{ now.Unix }}" defer></script>
   {{ end }}
   <script src="{{ "js/lightbox.js" | relURL }}?v={{ now.Unix }}" defer></script>
+  <script src="{{ "js/ogp-card.js" | relURL }}?v={{ now.Unix }}" defer></script>
   {{ if and (not .IsHome) (eq .Kind "page") (eq .Section "posts") }}
   <script src="{{ "js/post-interactions.js" | relURL }}?v={{ now.Unix }}" defer></script>
   {{ if site.Params.turnstileSiteKey }}

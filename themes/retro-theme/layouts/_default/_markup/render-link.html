@@ -1,0 +1,18 @@
+{{- /* リンク render hook: 外部リンクは新規タブ、裸のURL(内部・外部問わず)は OGP カード化の目印を付与 */ -}}
+{{- $dest := .Destination -}}
+{{- $text := .Text -}}
+{{- $isHTTP := or (hasPrefix $dest "https://") (hasPrefix $dest "http://") -}}
+{{- $isExternal := false -}}
+{{- if $isHTTP -}}
+  {{- $siteHost := (urls.Parse site.BaseURL).Hostname -}}
+  {{- $linkHost := (urls.Parse $dest).Hostname -}}
+  {{- if and $linkHost (ne $linkHost $siteHost) -}}{{- $isExternal = true -}}{{- end -}}
+{{- end -}}
+{{- $isBare := and $isHTTP (eq (printf "%s" $text) $dest) -}}
+{{- if $isBare -}}
+<a class="ogp-card-link" href="{{ $dest | safeURL }}"{{ if $isExternal }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ $text | safeHTML }}</a>
+{{- else if $isExternal -}}
+<a href="{{ $dest | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }} target="_blank" rel="noopener noreferrer">{{ $text | safeHTML }}</a>
+{{- else -}}
+<a href="{{ $dest | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}>{{ $text | safeHTML }}</a>
+{{- end -}}
